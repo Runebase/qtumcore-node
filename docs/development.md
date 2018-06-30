@@ -10,22 +10,22 @@ nvm install v4
 
 ## Fork and Download Repositories
 
-To develop qtumcore-node:
+To develop runebasecore-node:
 
 ```bash
 cd ~
-git clone git@github.com:<yourusername>/qtumcore-node.git
-git clone git@github.com:<yourusername>/qtumcore-lib.git
+git clone git@github.com:<yourusername>/runebasecore-node.git
+git clone git@github.com:<yourusername>/runebasecore-lib.git
 ```
 
-To develop qtum or to compile from source:
+To develop runebase or to compile from source:
 
 ```bash
-git clone git@github.com:<yourusername>/qtumcoin.git
+git clone git@github.com:<yourusername>/runebasecoin.git
 git fetch origin <branchname>:<branchname>
 git checkout <branchname>
 ```
-**Note**: See qtum documentation for building qtum on your platform.
+**Note**: See runebase documentation for building runebase on your platform.
 
 
 ## Install Development Dependencies
@@ -51,22 +51,22 @@ npm install
 cd ../bitcore-node
 npm install
 ```
-**Note**: If you get a message about not being able to download qtum distribution, you'll need to compile qtumd from source, and setup your configuration to use that version.
+**Note**: If you get a message about not being able to download runebase distribution, you'll need to compile runebased from source, and setup your configuration to use that version.
 
 
-We now will setup symlinks in `qtumcore-node` *(repeat this for any other modules you're planning on developing)*:
+We now will setup symlinks in `runebasecore-node` *(repeat this for any other modules you're planning on developing)*:
 ```bash
 cd node_modules
-rm -rf qtumcore-lib
-ln -s ~/qtumcore-lib
-rm -rf qtumd-rpc
-ln -s ~/qtumd-rpc
+rm -rf runebasecore-lib
+ln -s ~/runebasecore-lib
+rm -rf runebased-rpc
+ln -s ~/runebased-rpc
 ```
 
-And if you're compiling or developing qtumcoin:
+And if you're compiling or developing runebasecoin:
 ```bash
 cd ../bin
-ln -sf ~/qtum/src/qtumd
+ln -sf ~/runebase/src/runebased
 ```
 
 ## Run Tests
@@ -78,19 +78,19 @@ npm install mocha -g
 
 To run all test suites:
 ```bash
-cd qtumcore-node
+cd runebasecore-node
 npm run regtest
 npm run test
 ```
 
 To run a specific unit test in watch mode:
 ```bash
-mocha -w -R spec test/services/qtumd.unit.js
+mocha -w -R spec test/services/runebased.unit.js
 ```
 
 To run a specific regtest:
 ```bash
-mocha -R spec regtest/qtumd.js
+mocha -R spec regtest/runebased.js
 ```
 
 ## Running a Development Node
@@ -102,46 +102,46 @@ cd ~
 mkdir devnode
 cd devnode
 mkdir node_modules
-touch qtumcore-node.json
+touch runebasecore-node.json
 touch package.json
 ```
 
-Edit `qtumcore-node.json` with something similar to:
+Edit `runebasecore-node.json` with something similar to:
 ```json
 {
   "network": "livenet",
   "port": 3001,
   "services": [
-    "qtumd",
+    "runebased",
     "web",
     "insight-api",
     "insight-ui",
     "<additional_service>"
   ],
   "servicesConfig": {
-    "qtumd": {
+    "runebased": {
       "spawn": {
-        "datadir": "/home/<youruser>/.qtum",
-        "exec": "/home/<youruser>/qtum/src/qtumd"
+        "datadir": "/home/<youruser>/.runebase",
+        "exec": "/home/<youruser>/runebase/src/runebased"
       }
     }
   }
 }
 ```
 
-**Note**: To install services [qtum-insight-api](https://github.com/qtumproject/insight-api) and [qtum-explorer](https://github.com/qtumproject/qtum-explorer) you'll need to clone the repositories locally.
+**Note**: To install services [runebase-insight-api](https://github.com/runebase/insight-api) and [runebase-explorer](https://github.com/runebase/runebase-explorer) you'll need to clone the repositories locally.
 
 Setup symlinks for all of the services and dependencies:
 
 ```bash
 cd node_modules
-ln -s ~/qtumcore-lib
-ln -s ~/qtumcore-node
-ln -s ~/qtum-insight-api
-ln -s ~/qtum-explorer
+ln -s ~/runebasecore-lib
+ln -s ~/runebasecore-node
+ln -s ~/runebase-insight-api
+ln -s ~/runebase-explorer
 ```
 
-Make sure that the `<datadir>/qtum.conf` has the necessary settings, for example:
+Make sure that the `<datadir>/runebase.conf` has the necessary settings, for example:
 ```
 server=1
 whitelist=127.0.0.1
@@ -163,5 +163,5 @@ logevents=1
 
 From within the `devnode` directory with the configuration file, start the node:
 ```bash
-../qtumcore-node/bin/qtumcore-node start
+../runebasecore-node/bin/runebasecore-node start
 ```
