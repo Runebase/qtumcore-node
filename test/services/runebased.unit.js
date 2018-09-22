@@ -6567,7 +6567,7 @@ describe('Runebase Service', function() {
 			});
 
 
-			emitter.on('berycoind/addressbalance', function(data) {
+			emitter.on('runebased/addressbalance', function(data) {
 				data.balance.should.equal(1);
 				data.totalReceived.should.equal(2);
 				data.totalSpent.should.equal(1);
@@ -6612,7 +6612,7 @@ describe('Runebase Service', function() {
 				unconfirmedBalance: 100
 			});
 
-			emitter.on('berycoind/addressbalance', function(data) {
+			emitter.on('runebased/addressbalance', function(data) {
 				data.balance.should.equal(0);
 				data.totalReceived.should.equal(10);
 				data.totalSpent.should.equal(10);
